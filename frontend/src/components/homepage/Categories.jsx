@@ -1,8 +1,5 @@
 import React from "react"
-import Slider from "react-slick"
 import { Link } from "react-router-dom"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 
 import "../../assets/styles/Categories.css"
 import meal_plan from "../../assets/images/meal_plan.jpg"
@@ -46,55 +43,24 @@ const Categories = () =>
         }
     ]
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        autoplay: true,
-        arrows:false,
-        responsive: [
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 3,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 576,
-                settings: {
-                    slidesToShow: 1,
-                },
-            },
-        ],
-
-    }
-
     return (
         <div className="categories-container">
-            <h2>Categories</h2>
-            <Slider {...settings}>
-                {categories.map((ele) =>
-                {
-                    return (
-                        <Link to={ele.path} className="category-card" key={ele.title}>
-                            <div className="category-text" >
-                                <h2>{ele.title}</h2>
-                                <p>{ele.description}</p>
-                            </div>
-                            <img src={ele.imagePath} alt={ele.title} className="category-img" />
-                            <div className="category-overlay"></div>
-                        </Link>
-                    )
-                })}
-            </Slider>
+
+            {
+                categories.map((ele) => (
+                    <Link key={ele.title} to={ele.path} className="categories-link">
+                        <div className="categories-image">
+                            <img src={ele.imagePath} alt={ele.title} />
+                        </div>
+
+                        <div className="categories-text">
+                            <h2>{ele.title}</h2>
+                            <p>{ele.description}</p>
+                        </div>
+                    </Link>
+                ))
+            }
+
         </div>
     )
 }
