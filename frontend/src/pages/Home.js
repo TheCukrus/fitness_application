@@ -13,6 +13,8 @@ const Home = () =>
     return (
         <div>
             <HeroImage />
+            
+            <h2>Categories</h2>
             <Categories />
             {/*
             <FeaturedPrograms />
