@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
 const schema_Programs = new mongoose.Schema({
-    name: { type: String },
-    category: { type: String },
-    price: { type: String },
-    description: { type: String },
-    photo_path: { type: String }
+    name: { type: String, required: true, unique: true },
+    category: { type: String, required: true },
+    price: { type: String, required: true },
+    description: { type: String, required: true },
+    photo_path: { type: String, required: true }
 })
 
 schema_Programs.set("toJSON", {
