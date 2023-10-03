@@ -9,9 +9,9 @@ controller_Programs.get("/", async (req, res) =>
 {
     try
     {
-        const data = await model_Programs.get({})
+        const data = await model_Programs.find({})
 
-        res.status(200).json({ data })
+        res.status(200).json({ message:data })
     }
     catch (err)
     {
@@ -82,13 +82,17 @@ controller_Programs.post("/", async (req, res) =>
     {
         const program = await model_Programs.find({ name })
 
-        if (program)
+        if (program.length > 0)
         {
             return res.status(400).json({ message: "Program name is taken!" })
         }
 
         await model_Programs.create({
-            name, category, price, description, photo_path
+            "name": name,
+            "category": category,
+            "price": price,
+            "description": description,
+            "photo_path": photo_path
         })
 
         res.status(200).json({ message: "Program created successfull" })
