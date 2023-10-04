@@ -1,4 +1,5 @@
 const express = require("express")
+const bcrypt = require("bcrypt")
 const logger = require("../utils/logger.js")
 const model_User = require("../models/model_User.js")
 
@@ -47,7 +48,7 @@ controller_User.get("/:id", async (req, res) =>
     }
 })
 
-//POST create user
+//POST create new user
 controller_User.post("/", async (req, res) =>
 {
     try
