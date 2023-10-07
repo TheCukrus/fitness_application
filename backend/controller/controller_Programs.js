@@ -1,6 +1,7 @@
 const express = require("express")
 const logger = require("../utils/logger.js")
 const model_Programs = require("../models/model_Programs.js")
+const model_User = require("../models/model_User.js")
 
 const controller_Programs = express.Router()
 
@@ -11,7 +12,7 @@ controller_Programs.get("/", async (req, res) =>
     {
         const data = await model_Programs.find({})
 
-        res.status(200).json({ message:data })
+        res.status(200).json({ message: data })
     }
     catch (err)
     {
@@ -28,6 +29,11 @@ controller_Programs.get("/:id", async (req, res) =>
     if (!id)
     {
         return res.status(400).json({ message: "Id not found" })
+    }
+
+    if (!req.token.id)
+    {
+        return res.status(401).json({ message: "Tonen invalid" })
     }
 
     try
@@ -51,7 +57,19 @@ controller_Programs.get("/:id", async (req, res) =>
 //POST A new Program
 controller_Programs.post("/", async (req, res) =>
 {
-    const { name, category, price, description, photo_path } = req.body
+    if (!req.token.id)
+    {
+        return res.status(401).json({ message: "Token invalid" })
+    }
+
+    const role = await model_User.findById(req.token.id)
+
+    if (role.role !== "admin")
+    {
+        return res.status(401).json({ message: "You have no access" })
+    }
+
+    const { name, category, price, description, whatYoullGet, photo_path } = req.body
 
     if (!name)
     {
@@ -73,6 +91,11 @@ controller_Programs.post("/", async (req, res) =>
         return res.status(400).json({ message: "Description field must not be empty!" })
     }
 
+    if (!whatYoullGet)
+    {
+        return res.status(400).json({ message: "What youll get field must not be empty!" })
+    }
+
     if (!photo_path)
     {
         return res.status(400).json({ message: "Photo_path field must not be empty!" })
@@ -92,6 +115,7 @@ controller_Programs.post("/", async (req, res) =>
             "category": category,
             "price": price,
             "description": description,
+            "whatYoullGet": whatYoullGet,
             "photo_path": photo_path
         })
 
@@ -107,6 +131,11 @@ controller_Programs.post("/", async (req, res) =>
 //PUT Update program
 controller_Programs.put("/:id", async (req, res) =>
 {
+    if (!req.token.id)
+    {
+        return res.status(401).json({ message: "Token invalid" })
+    }
+
     const { id } = req.params
     const { body } = req.body
 
@@ -143,6 +172,11 @@ controller_Programs.put("/:id", async (req, res) =>
 //DELETE Remove program
 controller_Programs.delete("/:id", async (req, res) =>
 {
+    if (!req.token.id)
+    {
+        return res.status(401).json({ message: "Token invalid" })
+    }
+
     try
     {
         const { id } = req.params
