@@ -1,5 +1,6 @@
 const express = require("express")
 const model_Categories = require("../models/model_Categories.js")
+const model_User = require("../models/model_User.js")
 const logger = require("../utils/logger.js")
 
 const controller_Categories = express.Router()
@@ -23,6 +24,19 @@ controller_Categories.get("/", async (req, res) =>
 controller_Categories.post("/", async (req, res) =>
 {
     const { title, description, urlPath, imagePath } = req.body
+
+    if (!req.token.id)
+    {
+        return res.status(401).json({ message: "Token invalid" })
+    }
+
+    const role = await model_User.findById(req.token.id)
+
+    if (role.role !== "admin")
+    {
+        return res.status(401).json({ message: "You have no access" })
+    }
+
 
     if (!title)
     {
@@ -67,14 +81,26 @@ controller_Categories.delete("/:id", async (req, res) =>
 
         if (!id)
         {
-           return res.status(400).json({ message: "No Id given" })
+            return res.status(400).json({ message: "No Id given" })
+        }
+
+        const role = await model_User.findById(req.token.id)
+
+        if (role.role !== "admin")
+        {
+            return res.status(401).json({ message: "You have no access" })
+        }
+
+        if (!req.token.id)
+        {
+            return res.status(401).json({ message: "Token invalid" })
         }
 
         const result = await model_Categories.findByIdAndDelete(id)
 
         if (!result)
         {
-           return res.status(400).json({ message: "Item not found!" })
+            return res.status(400).json({ message: "Item not found!" })
         }
 
         res.status(200).json({ message: "Category removed successfully" })
