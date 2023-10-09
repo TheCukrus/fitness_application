@@ -5,6 +5,7 @@ const schema_Programs = new mongoose.Schema({
     category: { type: String, required: true },
     price: { type: String, required: true },
     description: { type: String, required: true },
+    whatYoullGet: { type: String, required: true },
     photo_path: { type: String, required: true }
 })
 
