@@ -69,7 +69,7 @@ controller_Programs.post("/", async (req, res) =>
         return res.status(401).json({ message: "You have no access" })
     }
 
-    const { name, category, price, description, whatYoullGet, photo_path } = req.body
+    const { name, category, price, description, whatYoullGet, url_path, photo_path } = req.body
 
     if (!name)
     {
@@ -96,6 +96,11 @@ controller_Programs.post("/", async (req, res) =>
         return res.status(400).json({ message: "What youll get field must not be empty!" })
     }
 
+    if (!url_path)
+    {
+        return res.status(400).json({ message: "Url path field must not be empty!" })
+    }
+
     if (!photo_path)
     {
         return res.status(400).json({ message: "Photo_path field must not be empty!" })
@@ -116,6 +121,7 @@ controller_Programs.post("/", async (req, res) =>
             "price": price,
             "description": description,
             "whatYoullGet": whatYoullGet,
+            "url_path": url_path,
             "photo_path": photo_path
         })
 
