@@ -1,10 +1,26 @@
 import { useCategoriesContext } from "../../contexts/ContextCategories.js"
 import categoriesServices from "../../services/categoriesServices.js"
-import { Table } from "react-bootstrap"
+import { useNotificationContext } from "../../contexts/ContextNotification.js"
+
+import { useState } from "react"
+import { Table, Container, Button, Modal } from "react-bootstrap"
+
 
 const CategoriesList = () =>
 {
+    const { showToast } = useNotificationContext()
     const { fetchCategories, categories } = useCategoriesContext()
+
+    const [show, setShow] = useState(false)
+    const [categoryToDelete, setCategoryToDelete] = useState(null)
+
+    const openModal = (category) =>
+    {
+        setCategoryToDelete(category)
+        setShow(true)
+    }
+
+    const closeModal = () => setShow(false)
 
     const removeCategory = async (id) =>
     {
@@ -12,8 +28,8 @@ const CategoriesList = () =>
         {
             const data = await categoriesServices.removeCategory(id)
             fetchCategories()
-            //There we can return notification
-            return data
+            closeModal()
+            return showToast(data.notification, data.type)
         }
         catch (err)
         {
@@ -22,13 +38,13 @@ const CategoriesList = () =>
     }
 
     return (
-        <div>
+        <Container>
             <h2>Categories List</h2>
 
             {categories.length === 0
                 ? <h2>Loading</h2>
                 :
-                <Table striped bordered hover>
+                <Table striped bordered hover responsive>
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -45,13 +61,24 @@ const CategoriesList = () =>
                                 <td>{ele.description}</td>
                                 <td>{ele.urlPath}</td>
                                 <td>{ele.imagePath}</td>
-                                <td><button onClick={() => (removeCategory(ele.id))}>Delete</button></td>
+                                <td><Button variant="danger" onClick={() => { openModal(ele) }}>Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
             }
-        </div>
+
+            <Modal show={show} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Category</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure want to delete {categoryToDelete?.name}?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeModal}>Cancel</Button>
+                    <Button variant="primary" onClick={() => removeCategory(categoryToDelete?.id)}>Confirm</Button>
+                </Modal.Footer>
+            </Modal>
+        </Container>
     )
 }
 
