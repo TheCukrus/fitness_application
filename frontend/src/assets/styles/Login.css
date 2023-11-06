@@ -1,0 +1,88 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    min-height: 100%;
+}
+
+
+.image-login-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625em;
+    flex: 1 0 0;
+    align-self: stretch;
+    background-color: #f0f8ff;
+}
+
+.input-login-form {
+    display: flex;
+    padding: 5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+    flex: 1 0 0;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideformIn 0.5s ease-out forwards, fadeformIn 0.5s ease-out forwards;
+}
+
+.right-aligned-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@keyframes slideformIn {
+    to {
+        transform: translateY(0);
+    }
+}
+
+form {
+    width: 80%;
+}
+
+@keyframes fadeformIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Input and Button transitions for focus and hover */
+.form-control,
+.btn {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .login-container {
+        flex-direction: column;
+        /* Stack the image and form on top of each other */
+    }
+
+    .image-login-side {
+        width: 100%;
+        /* Full width */
+        min-height: 300px;
+        /* Minimum height for the image container */
+        order: -1;
+        /* Move image to the top */
+    }
+
+    .input-login-form {
+        width: 100%;
+        /* Full width */
+        padding: 2rem;
+        /* Reduce padding on smaller screens */
+        max-width: none;
+        /* Remove max-width */
+        display: flex;
+        align-items: center;
+    }
+}
