@@ -66,9 +66,9 @@ const Login = () =>
             <div className="input-login-form">
                 <h2>Login</h2>
 
-                <Form onSubmit={handleOnSubmit}>
+                <Form onSubmit={handleOnSubmit} className="login-form">
                     <Form.Group className="mb-3">
-                        <FloatingLabel label="Email/Username">
+                        <FloatingLabel label={`Email/Username`}>
                             <Form.Control type="text" name="login" value={loginForm.username} onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })} required placeholder="Username/Email" />
                         </FloatingLabel>
                     </Form.Group>
