@@ -1,0 +1,97 @@
+.hero-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    text-align: center;
+    padding: 150px 0;
+    min-height: 400px;
+    animation: fadeIn 1s ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.text-animation {
+    animation: fadeInText 1s ease-in-out forwards;
+    opacity: 0;
+    transform: translateY(10px);
+    animation-delay: 1s;
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transoform: translateY(0)
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.hero-banner h1 {
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-banner p {
+    font-size: 1.5rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 992px) {
+    .hero-banner {
+        padding: 100px 0;
+    }
+
+    .hero-banner h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-banner p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        padding: 80px 0;
+    }
+
+    .hero-banner h1 {
+        font-size: 2rem;
+    }
+
+    .hero-banner p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-banner {
+        padding: 60px 0;
+    }
+
+    .hero-banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-banner p {
+        font-size: 0.8rem;
+    }
+}
