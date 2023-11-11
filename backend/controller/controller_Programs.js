@@ -31,11 +31,6 @@ controller_Programs.get("/:id", async (req, res) =>
         return res.status(400).json({ message: "Id not found" })
     }
 
-    if (!req.token.id)
-    {
-        return res.status(401).json({ message: "Tonen invalid" })
-    }
-
     try
     {
         const program = await model_Programs.findById(id)
@@ -46,6 +41,59 @@ controller_Programs.get("/:id", async (req, res) =>
         }
 
         res.status(200).json({ message: program })
+    }
+    catch (err)
+    {
+        logger.error(err)
+        res.status(500).json({ message: "Internal server error" })
+    }
+})
+
+//POST add comment
+controller_Programs.post("/:id", async (req, res) =>
+{
+    try
+    {
+
+        if (!req.token.id)
+        {
+            res.status(401).json({ message: "Token invalid" })
+        }
+
+        const { id } = req.params
+
+        if (!id)
+        {
+            res.status(400).json({ message: "Id not found" })
+        }
+
+        const program = await model_Programs.findById(id)
+
+        if (!program)
+        {
+            return res.status(404).json({ message: "Program not found" })
+        }
+
+        const { comment } = req.body
+
+        if (!comment)
+        {
+            return res.status(404).json({ message: "Comment not found!" })
+        }
+
+        const existingComments = program.comments
+
+        const newComment = {
+            "username": req.token.username,
+            "comment": comment,
+            "data": Date.now()
+        }
+
+        program.comments = existingComments.concat(newComment)
+        await program.save()
+
+        res.status(200).json({ message: "New comment created" })
+
     }
     catch (err)
     {
