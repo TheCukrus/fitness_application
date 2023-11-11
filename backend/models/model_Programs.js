@@ -5,9 +5,21 @@ const schema_Programs = new mongoose.Schema({
     category: { type: String, required: true },
     price: { type: String, required: true },
     description: { type: String, required: true },
-    whatYoullGet: { type: String, required: true },
+    whatYoullGet: [
+        {
+            name: { type: String },
+            text: { type: String },
+        }
+    ],
     url_path: { type: String, required: true },
-    photo_path: { type: String, required: true }
+    photo_path: { type: String, required: true },
+    comments: [
+        {
+            username: { type: String },
+            comment: { type: String },
+            data: { type: Date }
+        }
+    ]
 })
 
 schema_Programs.set("toJSON", {
