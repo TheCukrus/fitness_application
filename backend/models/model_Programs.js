@@ -11,7 +11,6 @@ const schema_Programs = new mongoose.Schema({
             text: { type: String },
         }
     ],
-    url_path: { type: String, required: true },
     photo_path: { type: String, required: true },
     comments: [
         {
@@ -19,7 +18,7 @@ const schema_Programs = new mongoose.Schema({
             comment: { type: String },
             data: { type: Date }
         }
-    ]
+    ],
 })
 
 schema_Programs.set("toJSON", {
