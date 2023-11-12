@@ -2,6 +2,7 @@ const express = require("express")
 const logger = require("../utils/logger.js")
 const model_Programs = require("../models/model_Programs.js")
 const model_User = require("../models/model_User.js")
+const model_Rating = require("../models/model_Rating.js")
 
 const controller_Programs = express.Router()
 
@@ -55,16 +56,16 @@ controller_Programs.post("/:id", async (req, res) =>
     try
     {
 
-        if (!req.token.id)
+        if (!req.token?.id)
         {
-            res.status(401).json({ message: "Token invalid" })
+            return res.status(401).json({ message: "Token invalid" })
         }
 
         const { id } = req.params
 
         if (!id)
         {
-            res.status(400).json({ message: "Id not found" })
+            return res.status(400).json({ message: "Id not found" })
         }
 
         const program = await model_Programs.findById(id)
@@ -102,6 +103,79 @@ controller_Programs.post("/:id", async (req, res) =>
     }
 })
 
+//POST Add rating
+controller_Programs.post("/:id/rating", async (req, res) =>
+{
+    const { id } = req.params
+    const { rating } = req.body
+    const userId = req.token?.id
+
+    if (!userId)
+    {
+        return res.status(401).json({ message: "To rate, you have to log in" })
+    }
+
+    if (!id)
+    {
+        return res.status(400).json({ message: "Program Id not found" })
+    }
+
+    try
+    {
+        // Find or create a rating
+        const ratingRecord = await model_Rating.findOneAndUpdate(
+            { program: id, user: userId },
+            { rating: rating },
+            { new: true, upsert: true }
+        )
+
+        // Recalculate the average rating for the program
+        const ratings = await model_Rating.find({ program: id })
+        const totalRating = ratings.reduce((acc, curr) => acc + curr.rating, 0)
+        const averageRating = totalRating / ratings.length
+
+        // Respond with the new average rating
+        res.status(200).json({ message: "Rating updated successfully", averageRating })
+
+    }
+    catch (err)
+    {
+        logger.error(err)
+        res.status(500).json({ message: "Internal server error" })
+    }
+})
+
+//GET Current rating of a program
+controller_Programs.get("/:id/rating", async (req, res) =>
+{
+    const { id } = req.params
+
+    if (!id)
+    {
+        return res.status(400).json({ message: "Program Id not found" })
+    }
+
+    try
+    {
+        const rating = await model_Rating.find({ program: id })
+
+        if (rating.length === 0)
+        {
+            return res.status(404).json({ message: "No ratings for this program" })
+        }
+
+        const totalRating = rating.reduce((acc, curr) => acc + curr.rating, 0)
+        const averageRating = totalRating / rating.length
+
+        res.status(200).json({ message: averageRating })
+    }
+    catch (err)
+    {
+        logger.error(err)
+        res.status(500).json({ message: "Internal server error" })
+    }
+})
+
 //POST A new Program
 controller_Programs.post("/", async (req, res) =>
 {
@@ -117,7 +191,7 @@ controller_Programs.post("/", async (req, res) =>
         return res.status(401).json({ message: "You have no access" })
     }
 
-    const { name, category, price, description, whatYoullGet, url_path, photo_path } = req.body
+    const { name, category, price, description, whatYoullGet, photo_path } = req.body
 
     if (!name)
     {
@@ -144,11 +218,6 @@ controller_Programs.post("/", async (req, res) =>
         return res.status(400).json({ message: "What youll get field must not be empty!" })
     }
 
-    if (!url_path)
-    {
-        return res.status(400).json({ message: "Url path field must not be empty!" })
-    }
-
     if (!photo_path)
     {
         return res.status(400).json({ message: "Photo_path field must not be empty!" })
@@ -169,7 +238,6 @@ controller_Programs.post("/", async (req, res) =>
             "price": price,
             "description": description,
             "whatYoullGet": whatYoullGet,
-            "url_path": url_path,
             "photo_path": photo_path
         })
 
