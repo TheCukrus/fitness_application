@@ -25,7 +25,7 @@ const ProgramList = ({ fetchProgramList, programList }) =>
         {
             const removeProgram = await programService.removeProgram(id)
 
-            showToast(removeProgram, "success")
+            showToast(removeProgram.notification, removeProgram.type)
             closeModal()
             fetchProgramList()
         }
@@ -40,7 +40,6 @@ const ProgramList = ({ fetchProgramList, programList }) =>
 
     return (
         <Container>
-            <h2>Program List</h2>
 
             {
                 !programList
