@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, FloatingLabel, Container, Row, Col, Button } from "react-bootstrap"
+import { Form, FloatingLabel, Container, Row, Col, Button, Stack } from "react-bootstrap"
 
 import { useCategoriesContext } from "../../contexts/ContextCategories.js"
 import programService from "../../services/programService.js"
@@ -15,8 +15,7 @@ const CreateProgram = ({ fetchProgramList }) =>
         category: "",
         price: "",
         description: "",
-        whatYoullGet: "",
-        url_path: "",
+        whatYoullGet: [{ name: "", text: "" }],
         photo_path: ""
     })
 
@@ -37,8 +36,7 @@ const CreateProgram = ({ fetchProgramList }) =>
                 category: "",
                 price: "",
                 description: "",
-                whatYoullGet: "",
-                url_path: "",
+                whatYoullGet: [],
                 photo_path: ""
             })
             fetchProgramList()
@@ -51,9 +49,29 @@ const CreateProgram = ({ fetchProgramList }) =>
         }
     }
 
+
+
+
+    //Add description field
+    const addField = (e) =>
+    {
+        e.preventDefault()
+        const newField = [{ name: "", text: "" }]
+        const addedField = programForm.whatYoullGet
+        return setProgramForm({ ...programForm, whatYoullGet: addedField.concat(newField) })
+    }
+
+    //Remove last description field
+    const removeField = (e) =>
+    {
+        e.preventDefault(e)
+        const whatYoullGetArr = programForm.whatYoullGet
+        whatYoullGetArr.pop()
+        return setProgramForm({ ...programForm, whatYoullGet: whatYoullGetArr })
+    }
+
     return (
         <Container>
-            <h2>Create program</h2>
             <Form onSubmit={handleOnSubmit}>
                 <Form.Group>
                     <FloatingLabel label="Name" className="mb-3">
@@ -82,22 +100,11 @@ const CreateProgram = ({ fetchProgramList }) =>
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col md={6}>
-                        <Form.Group>
-                            <FloatingLabel label="Photo path" className="mb-3">
-                                <Form.Control type="text" name="photo_path" value={programForm.photo_path} onChange={(e) => setProgramForm({ ...programForm, photo_path: e.target.value })} required placeholder="/assets/images/programs/image name" />
-                            </FloatingLabel>
-                        </Form.Group>
-                    </Col>
-                    <Col md={6}>
-                        <Form.Group>
-                            <FloatingLabel label="Url path" className="mb-3">
-                                <Form.Control type="text" name="url_path" value={programForm.url_path} onChange={(e) => setProgramForm({ ...programForm, url_path: e.target.value })} required placeholder="/url_paht" />
-                            </FloatingLabel>
-                        </Form.Group>
-                    </Col>
-                </Row>
+                <Form.Group>
+                    <FloatingLabel label="Photo path" className="mb-3">
+                        <Form.Control type="text" name="photo_path" value={programForm.photo_path} onChange={(e) => setProgramForm({ ...programForm, photo_path: e.target.value })} required placeholder="/assets/images/programs/image name" />
+                    </FloatingLabel>
+                </Form.Group>
 
                 <Form.Group>
                     <FloatingLabel label="Description" className="mb-3">
@@ -105,11 +112,48 @@ const CreateProgram = ({ fetchProgramList }) =>
                     </FloatingLabel>
                 </Form.Group>
 
-                <Form.Group>
-                    <FloatingLabel label="What youll get" className="mb-3">
-                        <Form.Control as="textarea" style={{ height: "200px" }} name="whatYoullGet" value={programForm.whatYoullGet} onChange={(e) => setProgramForm({ ...programForm, whatYoullGet: e.target.value })} required placeholder="Detailed description" />
-                    </FloatingLabel>
-                </Form.Group>
+
+
+                {programForm.whatYoullGet.map((ele, i) =>
+                (
+                    <Form.Group key={`whatYoullGet arr index ${i}`}>
+                        <h3 className="mb-3 text-center">{`Detail description field ${i + 1}`}</h3>
+                        <FloatingLabel label="Description name field" className="mb-3">
+                            <Form.Control
+                                type="text"
+                                name="whatYoullGetName"
+                                value={ele.name}
+                                onChange={(e) =>
+                                {
+                                    const newField = [...programForm.whatYoullGet]
+                                    newField[i].name = e.target.value
+                                    setProgramForm({ ...programForm, whatYoullGet: newField })
+                                }}
+                                placeholder="name"
+                            />
+                        </FloatingLabel>
+
+                        <FloatingLabel label="Description text field" className="mb-3">
+                            <Form.Control
+                                as="textarea"
+                                style={{ height: "100px" }}
+                                name="whatYoullGetText"
+                                value={ele.text}
+                                onChange={(e) =>
+                                {
+                                    const newField = [...programForm.whatYoullGet]
+                                    newField[i].text = e.target.value
+                                    setProgramForm({ ...programForm, whatYoullGet: newField })
+                                }}
+                                placeholder="detailed description"
+                            />
+                        </FloatingLabel>
+                    </Form.Group>
+                ))}
+                <Stack direction="horizontal" gap={3}>
+                    <Button className="mb-3" variant="success" onClick={addField}>Add field</Button>
+                    <Button className="mb-3" variant="danger" onClick={removeField}>Remove field</Button>
+                </Stack>
 
                 <Button as="input" type="submit" />
 
