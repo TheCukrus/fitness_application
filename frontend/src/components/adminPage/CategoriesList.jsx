@@ -39,7 +39,6 @@ const CategoriesList = () =>
 
     return (
         <Container>
-            <h2>Categories List</h2>
 
             {categories.length === 0
                 ? <h2>Loading</h2>
