@@ -27,9 +27,9 @@ const Login = () =>
         {
             const login = await loginService.authorization(loginForm)
 
-            if (login.message)
+            if (login.type === "error")
             {
-                return showToast(login.message, "error")
+                return showToast(login.notification, "error")
             }
 
             window.localStorage.setItem("token", JSON.stringify(login))
