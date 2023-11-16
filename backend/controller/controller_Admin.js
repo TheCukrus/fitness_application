@@ -15,11 +15,13 @@ controller_Admin.get("/", async (req, res) =>
 
         const userRole = await model_User.findById(req.token.id)
 
-        if (userRole.role !== "admin")
+        if (userRole?.role !== "admin")
         {
-            return logger.info({ message: "Have no access" })
+            logger.info({ message: "User" })
+            return res.status(200).json({ message: "User" })
         }
 
+        logger.info({ message: "Admin" })
         res.status(200).json({ message: "Access granted" })
 
     }
