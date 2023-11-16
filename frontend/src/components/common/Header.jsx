@@ -1,39 +1,82 @@
-import { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-
+import { AiOutlineMenu } from "react-icons/ai"
+import { FaShoppingCart, FaRegUserCircle } from "react-icons/fa"
+import { RiAdminLine } from "react-icons/ri"
+import { BiBookOpen } from "react-icons/bi"
+import { MdAccountBox, MdOutlineLogout } from "react-icons/md"
 import "../../assets/styles/Header.css"
 import logo from "../../assets/images/logo.jpg"
-import hamburger from "../../assets/images/hamburger.svg"
 import { useUserContext } from "../../contexts/ContextUser.js"
+import { Button, Container, Nav, Navbar, Offcanvas, NavDropdown } from "react-bootstrap"
 
 const Header = () =>
 {
     const { user, adminRights, logout } = useUserContext()
 
-    const [showDropdown, setShowDropdown] = useState(false)
-
-    const toggleDropdown = () => setShowDropdown(!showDropdown)
-    const closeDropdown = () => setShowDropdown(false)
+    console.log(user)
 
     return (
-        <div className="Header-container">
-            <div className="header-logo">
-                <Link to="/"><img src={logo} alt="logo" /></Link>
-            </div>
-
-            <button className={`links-toggler${showDropdown ? " show" : ""}`} onClick={toggleDropdown}>
-                <img src={hamburger} alt="hamburger" />
-            </button>
-
-            <ul className={`links${showDropdown ? " show" : ""}`}>
-                <li><Link to="/programs" onClick={closeDropdown}>PROGRAMS</Link></li>
-                {user ? <li><Link to="/cart" onClick={closeDropdown}>CART</Link></li> : null}
-                {!user ? <li><Link to="/login" onClick={closeDropdown}>LOG IN</Link></li> : null}
-                {!user ? <li><Link to="/signup" onClick={closeDropdown}>SIGN UP</Link></li> : null}
-                {adminRights ? <li><Link to="/admin" onClick={closeDropdown}>ADMIN</Link></li> : null}
-                {user ? <li><Link to="/" onClick={() => { closeDropdown(); logout(); }} >LOGOUT</Link></li> : null}
-            </ul>
-        </div >
+        <Navbar expand="sm" className="mb-3">
+            <Container fluid>
+                <Navbar.Brand as={Link} to="/" className="header-logo">
+                    <img src={logo} alt="logo" />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="end">
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title id="offcanvasNavbarLabel">
+                            <AiOutlineMenu /> Menu
+                        </Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <Nav className="justify-content-between flex-grow-1 pe-3">
+                            <div className="d-flex justify-content-center flex-grow-1">
+                                <Nav.Link as={Link} to="/programs" className="mx-2">
+                                    <BiBookOpen /> Programs
+                                </Nav.Link>
+                                {adminRights && (
+                                    <Nav.Link as={Link} to="/admin" className="mx-2">
+                                        <RiAdminLine /> Admin Page
+                                    </Nav.Link>
+                                )}
+                                {user && (
+                                    <Nav.Link as={Link} to="/cart" className="mx-2">
+                                        <FaShoppingCart /> Cart
+                                    </Nav.Link>
+                                )}
+                            </div>
+                            <div className="d-flex align-items-center">
+                                {!user ? (
+                                    <>
+                                        <Nav.Link as={Link} to="/signup">
+                                            <Button size="sm" variant="outline-primary">
+                                                Sign Up
+                                            </Button>
+                                        </Nav.Link>
+                                        <Nav.Link as={Link} to="/login">
+                                            <Button size="sm" variant="primary">
+                                                Log In
+                                            </Button>
+                                        </Nav.Link>
+                                    </>
+                                ) : (
+                                    <NavDropdown title={<><FaRegUserCircle /> Profile</>} id="user-dropdown" align="end">
+                                        <NavDropdown.Item as={Link} to={`/user/${user.id}`}>
+                                            <MdAccountBox /> My account
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item as={Link} to="/" onClick={logout}>
+                                            <MdOutlineLogout /> Logout
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                )}
+                            </div>
+                        </Nav>
+                    </Offcanvas.Body>
+                </Navbar.Offcanvas>
+            </Container>
+        </Navbar>
     )
 }
 
