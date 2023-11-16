@@ -18,6 +18,6 @@ schema_User.set("toJSON", {
     }
 })
 
-const model_User = mongoose.model("user", schema_User, "user")
+const model_User = mongoose.model("User", schema_User, "user")
 
 module.exports = model_User
