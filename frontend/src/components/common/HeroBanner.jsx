@@ -5,12 +5,12 @@ import "../../assets/styles/heroBanner.css"
 const HeroBanner = ({ title, subtitle, backgroundImg }) =>
 {
     return (
-        <div className="hero-banner" style={{ backgroundImage: `url(${backgroundImg})` }}>
+        <div className="hero-banner" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImg})` }}>
             <Container>
                 <Row>
                     <Col>
-                        <h1>{title}</h1>
-                        <p>{subtitle}</p>
+                        <h1 className="text-animation">{title}</h1>
+                        <p className="text-animation">{subtitle}</p>
                     </Col>
                 </Row>
             </Container>
