@@ -7,6 +7,7 @@ import loginService from "../../services/loginService.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
 import adminService from "../../services/adminService.js"
 import categoriesServices from "../../services/categoriesServices.js"
+import cartService from "../../services/cartService.js"
 import programService from "../../services/programService.js"
 import { useUserContext } from "../../contexts/ContextUser.js"
 import HeroBanner from "../common/HeroBanner.jsx"
@@ -38,6 +39,7 @@ const Login = () =>
             categoriesServices.setAuthorizationToken(`Bearer ${login.token}`)
             programService.setAuthorizationToken(`Bearer ${login.token}`)
             loginService.setAuthorizationToken(`Bearer ${login.token}`)
+            cartService.setAuthorizationToken(`Bearer ${login.token}`)
 
             // Check if the toast has already been shown
             if (!user)
