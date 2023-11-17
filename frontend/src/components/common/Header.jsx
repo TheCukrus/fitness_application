@@ -14,8 +14,6 @@ const Header = () =>
 {
     const { user, adminRights, logout } = useUserContext()
 
-    console.log(user)
-
     return (
         <Navbar expand="sm" className="mb-3">
             <Container fluid>
