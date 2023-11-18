@@ -1,0 +1,52 @@
+.table {
+    padding: 0rem 6rem;
+}
+
+.productHeadTH {
+    font-size: large;
+}
+
+.headTH {
+    font-size: large;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.headTR {
+    border-bottom: solid 1px black;
+}
+
+.checkout {
+    vertical-align: middle;
+    text-align: end;
+}
+
+.checkout_btn {
+    animation: scaleUp 0.3s forwards;
+}
+
+.lastTR td {
+    border-color: white;
+    font-weight: 600;
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+    .table {
+        padding: 0rem;
+    }
+}
