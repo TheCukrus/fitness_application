@@ -1,0 +1,74 @@
+.contactInfo {
+    border: 1px solid black;
+    padding: 1rem 3rem 3rem;
+    margin: 0rem 5rem;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.contactInfo h2 {
+    text-align: left;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+
+.paymentInfo {
+    border: 1px solid black;
+    padding: 1rem 3rem 3rem;
+    margin: 2rem 5rem;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.paymentInfo h2 {
+    text-align: left;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.button {
+    text-align: end;
+    padding: 1rem 3rem 3rem;
+    margin: 2rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes hoverEffect {
+    from {
+        transform: scale(1);
+        box-shadow: 0 0 0 white;
+    }
+
+    to {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .contactInfo {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .paymentInfo {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .button {
+        text-align: center;
+        padding: 0;
+    }
+}
