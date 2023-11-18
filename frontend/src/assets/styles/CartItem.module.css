@@ -1,0 +1,49 @@
+.productDetail {
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.productInfo {
+    flex-grow: 1;
+}
+
+.productImage {
+    width: 100px;
+    margin-right: 1rem;
+}
+
+.productInfo .removeButton {
+    text-decoration: none;
+    color: grey;
+}
+
+.productInfo .removeButton:hover {
+    color: red;
+}
+
+.quantity {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.price {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.subtotal {
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
