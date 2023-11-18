@@ -1,0 +1,54 @@
+.shoping_process {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.process_number {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.process {
+    margin: 2rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.process p {
+    padding-right: 3rem;
+}
+
+
+/* Active*/
+.activeLine {
+    border-bottom: solid black;
+}
+
+.activeProcessNumber {
+    background-color: black;
+    color: white
+}
+
+/*Complete*/
+.completedLine {
+    border-bottom: solid rgb(49, 185, 79);
+    color: rgb(49, 185, 79);
+}
+
+.completedProcessNumber {
+    background-color: rgb(49, 185, 79);
+    color: rgb(49, 185, 79);
+}
+
+/*Default*/
+.defaultLine {
+    border-bottom: none;
+    color: gray;
+}
+
+.defaultProcessNumber {
+    background-color: gray;
+    color: white
+}
