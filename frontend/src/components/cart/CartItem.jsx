@@ -2,9 +2,17 @@ import React from "react"
 import { Image, Button } from "react-bootstrap"
 import { AiOutlineClose } from "react-icons/ai"
 import s from "../../assets/styles/CartItem.module.css"
+import { useCartContext } from "../../contexts/ContextCart.js"
 
-const CartItem = ({ item }) =>
+const CartItem = ({ item, id }) =>
 {
+    const { removeItem } = useCartContext()
+
+    const handleRemoveItem = () =>
+    {
+        removeItem(id)
+    }
+
     return (
         <tr>
             <td className={s.productDetail}>
@@ -12,7 +20,7 @@ const CartItem = ({ item }) =>
                 <div className={s.productInfo}>
                     <strong>{item.program.name}</strong>
                     <p>{item.program.category}</p>
-                    <Button variant="link" size="sm" className={s.removeButton}><AiOutlineClose /> Remove</Button>
+                    <Button variant="link" size="sm" className={s.removeButton} onClick={handleRemoveItem}><AiOutlineClose /> Remove</Button>
                 </div>
             </td>
             <td className={s.quantity}>
