@@ -82,7 +82,7 @@ controller_Cart.post("/add", async (req, res) =>
     }
 })
 
-//POST Remove an item from the cart
+//DELETE Remove an item from the cart
 controller_Cart.delete("/remove/:programId", async (req, res) =>
 {
     try
@@ -107,6 +107,36 @@ controller_Cart.delete("/remove/:programId", async (req, res) =>
 
         await cart.save()
         res.status(200).json({ message: "Item removed from cart" })
+    }
+    catch (err)
+    {
+        logger.error(err)
+        res.status(500).json({ message: "Internal server error" })
+    }
+})
+
+//DELETE Remove cart
+controller_Cart.delete("/cart/remove/:id", async (req, res) =>
+{
+    try
+    {
+        const userId = req.token?.id
+        const { id } = req.params
+
+        if (!userId)
+        {
+            return res.status(401).json({ message: "User not authenticated" })
+        }
+
+        const cart = await model_Cart.findById(id)
+
+        if (!cart)
+        {
+            return res.status(404).json({ message: "Cart not found" })
+        }
+
+        const removeCart = await model_Cart.findByIdAndRemove(id)
+        res.status(200).json({ message: "Cart removed" })
     }
     catch (err)
     {
