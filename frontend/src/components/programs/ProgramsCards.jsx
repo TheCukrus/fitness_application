@@ -1,11 +1,13 @@
-import React from "react"
-import { Col, Row } from "react-bootstrap"
+import { useState } from "react"
+import { Col, Row, Button } from "react-bootstrap"
 import SingleProgramCard from "./SingleProgramCard.jsx"
 import s from "../../assets/styles/ProgramsCards.module.css"
 
 const ProgramCards = ({ programsSettings, programs }) =>
 {
-    const data = programs
+    const [visibleItemsCount, setVisibleItemsCount] = useState(8)
+
+    const filteredData = programs
         .filter((ele) => ele.category.includes(programsSettings.filter))
         .filter((ele) => ele.name.toLowerCase().includes(programsSettings.search.toLowerCase()))
         .sort((a, b) =>
@@ -28,19 +30,35 @@ const ProgramCards = ({ programsSettings, programs }) =>
             }
             else
             {
-                return a
+                return 0
             }
         })
 
+    const currentItems = filteredData.slice(0, visibleItemsCount)
+
+    const loadMoreItems = () =>
+    {
+        setVisibleItemsCount((prevCount) => prevCount + 8)
+    }
+
     return (
-        <Row xs={1} md={2} lg={3} xxl={4} className={s.programs_grid}>
-            {data.map((program, index) => (
-                <Col key={program.name} className={s.program_card_col} style={{ animationDelay: `${index * 100}ms` }}>
-                    <SingleProgramCard program={program} />
-                </Col>
-            ))}
-        </Row>
-    );
+        <>
+            <Row xs={1} md={2} lg={3} xxl={4} className={s.programs_grid}>
+                {currentItems.map((program, index) => (
+                    <Col key={program.id} className={s.program_card_col} style={{ animationDelay: `${index * 100}ms` }}>
+                        <SingleProgramCard program={program} />
+                    </Col>
+                ))}
+            </Row>
+            {visibleItemsCount < filteredData.length && (
+                <div className="d-flex justify-content-center my-4">
+                    <Button onClick={loadMoreItems} variant="primary" size="lg">
+                        Load More
+                    </Button>
+                </div>
+            )}
+        </>
+    )
 }
 
 export default ProgramCards
