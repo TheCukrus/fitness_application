@@ -1,0 +1,101 @@
+.container {
+    background-color: var(--secondary-bg-color);
+    padding: 3rem 0rem 3rem 3rem;
+    align-items: center;
+}
+
+.container .text_column {
+    padding-left: 3rem;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.text_column h1 {
+    font-size: 2.5rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color)
+}
+
+.text_column p {
+    margin-top: 2rem;
+    animation: fadeInUp 1s ease-out forwards;
+    color: var(--text-color)
+}
+
+.primaryAction {
+    margin: 1rem;
+    width: 10rem;
+    height: 3rem;
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-primary-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-primary-border-color);
+    transition: var(--button-transition);
+}
+
+.primaryAction:hover {
+    background: var(--button-primary-hover-bg)
+}
+
+.secondaryAction {
+    margin: 1rem;
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--button-text-color-dark);
+    border: 2px solid var(--button-secondary-border-color);
+    transition: var(--button-transition);
+}
+
+.secondaryAction:hover {
+    background: var(--button-secondary-hover-bg);
+    color: white;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 1rem;
+
+    }
+
+    .primaryAction,
+    .secondaryAction {
+        width: 7rem;
+        height: 2.5rem;
+    }
+
+    .text_column h1 {
+        font-size: 2rem;
+    }
+
+    .text_column p {
+        margin-top: 1.5rem;
+        animation: fadeInUp 1s ease-out forwards;
+        color: var(--text-color)
+    }
+}
