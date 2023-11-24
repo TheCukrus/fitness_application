@@ -13,7 +13,7 @@ const cors = require("cors")
 
 const app = express()
 
-// const frontendBuildPath = path.resolve(__dirname, "..", "frontend", "build")
+const frontendBuildPath = path.resolve(__dirname, "..", "frontend", "build")
 
 mongoose.connect(config.MONGODB)
     .then(() => logger.info("Connect to mongoDB"))
@@ -22,7 +22,7 @@ mongoose.connect(config.MONGODB)
 
 app.use(cors())
 app.use(express.json())
-// app.use(express.static(frontendBuildPath))
+app.use(express.static(frontendBuildPath))
 app.use(middleware.tokenExtractor)
 
 app.use("/api/v1/program", middleware.tokenExtractor, controller_Programs)
