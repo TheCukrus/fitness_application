@@ -6,7 +6,7 @@ import CartProcess from "../components/cart/CartProcess.jsx"
 import CartComponent from "../components/cart/CartComponent.jsx"
 import CartCheckout from "../components/cart/CartCheckout.jsx"
 import OrderComplete from "../components/cart/OrderComplete.jsx"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Cart = () =>
 {
@@ -17,6 +17,8 @@ const Cart = () =>
         checkoutDetails: "default",
         orderComplete: "default"
     })
+
+    const navigate = useNavigate()
 
     const [cartRoute, setCartRoute] = useState("shoppingCart")
 
@@ -30,7 +32,7 @@ const Cart = () =>
                         <Col className={s.emptyCart}>
                             <h2 className={s.emptyCartTitle}>Your cart feels lonely</h2>
                             <p className={s.emptyCartText}>Looks like you haven't made your choice yet...</p>
-                            <Link to="/programs" className={s.shoppingButton}>Start Exploring Programs</Link>
+                            <button className={s.shoppingButton} onClick={() => { navigate("/programs") }}>Start Exploring Programs</button>
                         </Col>
                     </Row>
                 </Container>
