@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { Form, FloatingLabel, Container, Row, Col, Button, Stack } from "react-bootstrap"
-
+import { Form, FloatingLabel, Container, Row, Col, Stack } from "react-bootstrap"
+import s from "../../assets/styles/AdminPage.module.css"
 import { useCategoriesContext } from "../../contexts/ContextCategories.js"
 import programService from "../../services/programService.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
@@ -49,9 +49,6 @@ const CreateProgram = ({ fetchProgramList }) =>
         }
     }
 
-
-
-
     //Add description field
     const addField = (e) =>
     {
@@ -71,7 +68,7 @@ const CreateProgram = ({ fetchProgramList }) =>
     }
 
     return (
-        <Container>
+        <Container className={`${s.container} mb-3`}>
             <Form onSubmit={handleOnSubmit}>
                 <Form.Group>
                     <FloatingLabel label="Name" className="mb-3">
@@ -151,11 +148,11 @@ const CreateProgram = ({ fetchProgramList }) =>
                     </Form.Group>
                 ))}
                 <Stack direction="horizontal" gap={3}>
-                    <Button className="mb-3" variant="success" onClick={addField}>Add field</Button>
-                    <Button className="mb-3" variant="danger" onClick={removeField}>Remove field</Button>
+                    <button className={`${s.greenButton} mb-3`} onClick={addField}>Add field</button>
+                    <button className={`${s.redButton} mb-3`} onClick={removeField}>Remove field</button>
                 </Stack>
 
-                <Button as="input" type="submit" />
+                <input type="submit" className={s.blueButton} />
 
             </Form>
         </Container >
