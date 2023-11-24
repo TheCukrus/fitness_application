@@ -1,0 +1,53 @@
+.latestProgramsSection {
+    padding: 4rem 0;
+}
+
+.sectionHeading {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.sectionSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.col {
+    margin-bottom: 1.5rem;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.scaleUpAnimate {
+    animation: scaleUp 2s ease-out forwards
+}
+
+.fadeInAnimate {
+    animation: fadeIn 1s ease-out forwards;
+}
