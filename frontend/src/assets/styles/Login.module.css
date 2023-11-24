@@ -1,0 +1,121 @@
+.login_container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    min-height: 100%;
+}
+
+
+.image_login_side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625em;
+    flex: 1 0 0;
+    align-self: stretch;
+    background-color: var(--secondary-bg-color);
+}
+
+.input_login_form {
+    display: flex;
+    padding: 5rem;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3rem;
+    flex: 1 0 0;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideformIn 0.5s ease-out forwards, fadeformIn 0.5s ease-out forwards;
+}
+
+.input_login_form h2 {
+    color: var(--text-color);
+}
+
+.login_form {
+    width: 60%;
+}
+
+.right_aligned_link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* Buttons*/
+.login_button {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-primary-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-primary-border-color);
+    transition: var(--button-transition);
+}
+
+.login_button:hover {
+    background: var(--button-primary-hover-bg);
+}
+
+.login_google,
+.login_apple {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--button-text-color-dark);
+    border: 2px solid var(--button-secondary-border-color);
+    transition: var(--button-transition);
+}
+
+.login_google:hover,
+.login_apple:hover {
+    background: var(--button-secondary-hover-bg);
+    color: white;
+}
+
+.account_prompt {
+    color: var(--text-color);
+}
+
+@keyframes slideformIn {
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeformIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .login_container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .login_form {
+        width: auto;
+    }
+
+    .image_login_side {
+        padding-top: 2rem;
+    }
+
+    .input_login_form {
+        width: 100%;
+        padding: 2rem;
+        max-width: none;
+        display: flex;
+        align-items: center;
+    }
+}
