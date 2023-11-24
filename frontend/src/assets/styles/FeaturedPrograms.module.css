@@ -1,0 +1,68 @@
+.featuredContainer {
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.programsRow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.programImageCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.singleProgramCol {
+    animation-name: slideInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--animation-order) * 100ms);
+    --animation-order: 1;
+    /* Default order */
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .programsRow {
+        flex-direction: column;
+    }
+
+    .singleProgramCol {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .programImageCol {
+        margin-bottom: 2rem;
+    }
+}
