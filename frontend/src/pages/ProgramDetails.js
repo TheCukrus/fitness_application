@@ -8,9 +8,12 @@ import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa"
 import s from "../assets/styles/ProgramDetails.module.css"
 import { useNotificationContext } from "../contexts/ContextNotification.js"
 import FeaturedPrograms from "../components/programs/FeaturedPrograms.jsx"
+import { useCartContext } from "../contexts/ContextCart.js"
 
 const ProgramDetails = () =>
 {
+    const { addItem } = useCartContext()
+
     const programId = useParams()
     const { showToast } = useNotificationContext()
 
@@ -20,10 +23,25 @@ const ProgramDetails = () =>
 
     const [isFavorite, setIsFavorite] = useState(false)
 
+    const handleAddToCart = async (programId, quantity) =>
+    {
+        try
+        {
+            if (!window.localStorage.getItem("token"))
+            {
+                return showToast("You need login first!", "error")
+            }
+            await addItem(programId, quantity)
+            return showToast("Item added to cart", "success")
+        }
+        catch (err)
+        {
+            showToast("Error in adding item, please try again later", "error")
+        }
+    }
 
     const fetchProgram = async () =>
     {
-        // setLoading(true)
         try
         {
             const fetchProgram = await programService.getProgramById(programId.id)
@@ -113,7 +131,7 @@ const ProgramDetails = () =>
                                 <hr />
 
                                 <div className={s.action}>
-                                    <Button className={s.add_to_cart}><FaShoppingCart className="me-2" /> Add to Cart</Button>
+                                    <button className={`${s.add_to_cart} me-2`} onClick={() => { handleAddToCart(programId.id, 1) }}><FaShoppingCart /> Add to Cart</button>
                                     <Button
                                         className={`${s.favorite_button} ${isFavorite ? s.favored : ''}`}
                                         variant="link"
@@ -165,7 +183,7 @@ const ProgramDetails = () =>
                                                 placeholder="Write your thoughts"
                                             />
                                         </FloatingLabel>
-                                        <Button type="submit" variant="outline-secondary">Submit Comment</Button>
+                                        <button type="submit" className={s.comment_btn}>Submit Comment</button>
                                     </Form>
                                 </Card.Body>
                             </Card>
