@@ -1,5 +1,5 @@
 import React from "react"
-import { Table, Button } from "react-bootstrap"
+import { Table } from "react-bootstrap"
 import CartItem from "./CartItem.jsx"
 import s from "../../assets/styles/CartComponent.module.css"
 
@@ -35,7 +35,7 @@ const CartComponent = ({ cart, finalSum, setCartRoute, setProcess }) =>
                     <tr className={s.lastTR}>
                         <td></td>
                         <td className="d-none d-md-table-cell"></td>
-                        <td className={s.checkout}><Button onClick={handleChekout} variant="dark" className={s.checkout_btn}>Checkout</Button></td>
+                        <td className={s.checkout}><button onClick={handleChekout} className={s.checkout_btn}>Checkout</button></td>
                         <td className={s.quantity}>€ {finalSum.toFixed(2)}</td>
                     </tr>
                 </tbody>
