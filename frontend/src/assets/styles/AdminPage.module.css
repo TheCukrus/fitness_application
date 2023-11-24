@@ -1,0 +1,88 @@
+.container {
+    background: var(--secondary-bg-color);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.header2 {
+    padding: 2rem;
+    color: var(--text-color);
+}
+
+.blueButton {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-primary-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-primary-border-color);
+    transition: var(--button-transition);
+}
+
+.blueButton:hover {
+    background: var(--button-primary-hover-bg)
+}
+
+.greenButton {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-green-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-green-border-color);
+    transition: var(--button-transition);
+}
+
+.greenButton:hover {
+    background: var(--button-green-hover-bg)
+}
+
+.redButton {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-red-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-red-border-color);
+    transition: var(--button-transition);
+}
+
+.redDeleteButton {
+    width: 5rem;
+    height: 2.5rem;
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-red-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-red-border-color);
+    transition: var(--button-transition);
+}
+
+.redButton:hover,
+.redDeleteButton:hover {
+    background: var(--button-red-hover-bg)
+}
+
+.secondaryButton {
+    width: 5rem;
+    height: 2.5rem;
+    animation: fadeIn 1.2s ease-out forwards;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--button-text-color-dark);
+    border: 2px solid var(--button-secondary-border-color);
+    transition: var(--button-transition);
+}
+
+.secondaryButton:hover {
+    background: var(--button-secondary-hover-bg);
+    color: white;
+}
+
+.small{
+    width: 6rem;
+    height: 2.5rem;
+}
