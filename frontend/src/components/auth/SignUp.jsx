@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { Col, Row, Form, FloatingLabel, Button } from "react-bootstrap"
+import { Col, Row, Form, FloatingLabel } from "react-bootstrap"
 import userService from "../../services/userService.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
 import HeroBanner from "../common/HeroBanner.jsx"
 import { FaGoogle, FaApple } from "react-icons/fa"
 import { Link } from "react-router-dom"
-import "../../assets/styles/Signup.css"
+import s from "../../assets/styles/Signup.module.css"
 
 const SignUp = () =>
 {
@@ -41,15 +41,15 @@ const SignUp = () =>
     }
 
     return (
-        <div className="signup-container">
-            <div className="image-signup-side">
+        <div className={s.container}>
+            <div className={s.image_signup_side}>
                 <HeroBanner
                     title={"Sign Up"}
                     subtitle={"Create account and start your journey to better tommorow"}
                     backgroundImg="/assets/images/signup.png"
                 />
             </div>
-            <div className="input-signup-form">
+            <div className={s.input_form}>
                 <h2>Sign up</h2>
                 <Form onSubmit={handleOnSubmit}>
                     <Row className="mb-3">
@@ -85,26 +85,26 @@ const SignUp = () =>
                         <Form.Check label="Accept rules of this website" required />
                     </Form.Group>
 
-                    <Button as="input" type="submit" className="w-100 mb-3 btn-primary" />
+                    <input type="submit" className={`w-100 mb-3 ${s.signUpButton} `} />
 
                     <Row className="mb-3">
                         <Col xs={12} sm={6} className="pr-1">
-                            <Button variant="outline-primary" className="w-100 mb-2"><FaGoogle /> Log in with Google</Button>
+                            <button type="button" className={`w-100 mb-2 ${s.signUp_google}`}><FaGoogle /> Log in with Google</button>
                         </Col>
                         <Col xs={12} sm={6} className="pl-1">
-                            <Button variant="outline-primary" className="w-100 mb-2"><FaApple /> Log in with Apple</Button>
+                            <button type="button" className={`w-100 mb-2 ${s.signUp_apple}`} > <FaApple /> Log in with Apple</button>
                         </Col>
                     </Row>
 
-                    <hr className="hr-divider" />
+                    <hr />
 
-                    <div className="account-prompt">
+                    <div className={s.account_prompt}>
                         <p>Already have an account? <Link to="/login">Log in</Link></p>
                     </div>
                 </Form>
             </div>
 
-        </div>
+        </div >
     )
 }
 
