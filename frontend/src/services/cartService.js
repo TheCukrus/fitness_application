@@ -32,8 +32,7 @@ const getCart = async () =>
         return response.data.message
     } catch (err)
     {
-        console.error('Error fetching cart:', err.response?.data?.message || err.message)
-        throw err
+        return console.log("Cart is empty!")
     }
 }
 
