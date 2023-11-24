@@ -43,7 +43,7 @@ const LatestPrograms = () =>
                     </p>
                 </Col>
             </Row>
-            <Row>
+            <Row className={s.row}>
                 {reversedLatestPrograms.slice(0, 4).map((program) => (
                     <Col key={program.id} xs={12} sm={6} md={4} lg={3} xxl={2} className={`${s.col} ${animationClassSCaleUp}`}>
                         <SingleProgramCard program={program} />
