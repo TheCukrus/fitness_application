@@ -14,7 +14,7 @@ const StatisticsSection = () =>
                 </Col>
             </Row>
             {/* Icons with header and paragraph */}
-            <Row className="text-center">
+            <Row className="text-center justify-content-center">
                 <Col md={4} className={s.statistic}>
                     <FaRunning size="3em" />
                     <h3>1,000+</h3>
