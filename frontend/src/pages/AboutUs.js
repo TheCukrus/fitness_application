@@ -1,25 +1,25 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { useInView } from 'react-intersection-observer';
-import s from '../assets/styles/AboutUs.module.css';
+import React from "react"
+import { Container, Row, Col } from "react-bootstrap"
+import { useInView } from "react-intersection-observer"
+import s from "../assets/styles/AboutUs.module.css"
 
 const Section = ({ title, content, imgSrc, altText, order }) => {
-  const [titleRef, titleInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [contentRef, contentInView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const [imageRef, imageInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [titleRef, titleInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [contentRef, contentInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [imageRef, imageInView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
     <Row className={s.section}>
-      <Col md={6} className={`${s.textCol} ${order % 2 === 0 ? 'order-md-last' : ''}`}>
-        <h2 ref={titleRef} className={`${s.title} ${titleInView ? s.slideInLeft : ''}`}>{title}</h2>
-        <p ref={contentRef} className={`${s.content} ${contentInView ? s.slideInRight : ''}`}>{content}</p>
+      <Col md={6} className={`${s.textCol} ${order % 2 === 0 ? "order-md-last" : ""}`}>
+        <h2 ref={titleRef} className={`${s.title} ${titleInView ? s.slideInLeft : ""}`}>{title}</h2>
+        <p ref={contentRef} className={`${s.content} ${contentInView ? s.slideInRight : ""}`}>{content}</p>
       </Col>
       <Col md={6} className={s.imageCol}>
-        <img ref={imageRef} src={imgSrc} alt={altText} className={`${s.image} ${imageInView ? s.zoomIn : ''}`} />
+        <img ref={imageRef} src={imgSrc} alt={altText} className={`${s.image} ${imageInView ? s.zoomIn : ""}`} />
       </Col>
     </Row>
-  );
-};
+  )
+}
 
 const AboutUs = () => {
   return (
@@ -46,7 +46,7 @@ const AboutUs = () => {
         order={3}
       />
     </Container>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs
