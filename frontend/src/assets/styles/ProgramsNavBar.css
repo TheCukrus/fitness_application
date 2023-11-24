@@ -1,0 +1,82 @@
+.programs-nav-bar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 0.5rem;
+}
+
+.input-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.custom-select,
+.custom-input {
+    border: none;
+    padding: 0.75rem 1rem;
+    margin-left: 2.75rem;
+    /* Space for icon */
+    width: calc(100% - 2.75rem);
+    /* Adjust width to account for icon */
+    border-radius: 0.5rem;
+    box-shadow: none;
+    outline: none;
+    appearance: none;
+    background: transparent;
+    padding-left: 2.5rem;
+    /* Additional padding to avoid text overlap with icon */
+}
+
+.icon {
+    min-width: 2rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+.custom-select:focus,
+.custom-input:focus {
+    box-shadow: none;
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+
+    .custom-select,
+    .custom-input {
+        width: 100%;
+        /* Full width on small screens */
+        margin-left: 0;
+        /* Reset margin for stacked layout */
+        padding-left: 2.75rem;
+        /* Space for icon */
+    }
+
+    .input-icon {
+        left: 0.5rem;
+        /* Adjust icon position on small screens */
+        top: 50%;
+        /* Ensure middle alignment */
+        transform: translateY(-50%);
+    }
+}
