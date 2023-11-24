@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useCategoriesContext } from "../../contexts/ContextCategories.js"
 import categoriesServices from "../../services/categoriesServices.js"
-import { Container, Form, FloatingLabel, Button } from "react-bootstrap"
+import { Container, Form, FloatingLabel } from "react-bootstrap"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
+import s from "../../assets/styles/AdminPage.module.css"
 
 const CreateCategory = () =>
 {
@@ -33,7 +34,7 @@ const CreateCategory = () =>
     }
 
     return (
-        <Container>
+        <Container className={s.container}>
             <Form onSubmit={handleOnSubmit}>
                 <Form.Group>
                     <FloatingLabel label="Title" className="mb-3">
@@ -58,7 +59,7 @@ const CreateCategory = () =>
                         <Form.Control type="text" placeholder="/assets/images/image name" value={categoriesForm.imagePath} onChange={(e) => setCategoriesForm({ ...categoriesForm, imagePath: e.target.value })} />
                     </FloatingLabel>
                 </Form.Group>
-                <Button as="input" type="submit" />
+                <input className={s.blueButton} type="submit" />
             </Form>
         </Container>
     )
