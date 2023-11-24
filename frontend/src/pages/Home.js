@@ -1,26 +1,21 @@
 import React from "react"
-
-import BmiCounter from "../components/homepage/BmiCounter.jsx"
-import Categories from "../components/homepage/Categories.jsx"
-import HeroImage from "../components/homepage/HeroImage.jsx"
+import HeroSection from "../components/homepage/HeroSection.jsx"
+import StatisticsSection from "../components/homepage/StatisticSection.jsx"
+import FeaturesSection from "../components/homepage/FeatureSection.jsx"
+import LatestPrograms from "../components/homepage/LatestPrograms.jsx"
+import Testimonials from "../components/homepage/Testimonials.jsx"
 import Contact from "../components/homepage/Contact.jsx"
-// import FeaturedPrograms from "../components/homepage/FeaturedPrograms.jsx"
-// import Testimonials from "../components/homepage/Testimonials.jsx"
 
 const Home = () =>
 {
 
     return (
         <div>
-            <HeroImage />
-            
-            <h2>Categories</h2>
-            <Categories />
-            {/*
-            <FeaturedPrograms />
+            <HeroSection />
+            <StatisticsSection />
+            <FeaturesSection />
+            <LatestPrograms />
             <Testimonials />
-    */}
-            <BmiCounter />
             <Contact />
         </div>
     )
