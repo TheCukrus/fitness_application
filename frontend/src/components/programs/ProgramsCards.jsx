@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Col, Row, Button } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap"
 import SingleProgramCard from "./SingleProgramCard.jsx"
 import s from "../../assets/styles/ProgramsCards.module.css"
 
@@ -52,9 +52,7 @@ const ProgramCards = ({ programsSettings, programs }) =>
             </Row>
             {visibleItemsCount < filteredData.length && (
                 <div className="d-flex justify-content-center my-4">
-                    <Button onClick={loadMoreItems} variant="primary" size="lg">
-                        Load More
-                    </Button>
+                    <button onClick={loadMoreItems} className={s.load_more}>Load More</button>
                 </div>
             )}
         </>
