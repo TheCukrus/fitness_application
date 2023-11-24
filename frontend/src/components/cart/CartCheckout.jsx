@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Form, FloatingLabel, Row, Col, Button } from "react-bootstrap"
+import { Container, Form, FloatingLabel, Row, Col } from "react-bootstrap"
 import s from "../../assets/styles/CartCheckout.module.css"
 import cartService from "../../services/cartService.js"
 
@@ -24,7 +24,7 @@ const CartCheckout = ({ cartId, setCartRoute, setProcess }) =>
         try
         {
             await cartService.removeCart(cartId)
-            
+
             setCartRoute("PlaceOrder")
             setProcess({
                 shoppingCart: "completed",
@@ -111,7 +111,7 @@ const CartCheckout = ({ cartId, setCartRoute, setProcess }) =>
             </div>
 
             <div className={s.button}>
-                <Button className="mb-3" onClick={handlePlaceOrder} variant="dark">Place Order</Button>
+                <button className={s.placeOrder} onClick={handlePlaceOrder}>Place Order</button>
             </div>
         </Container>
     )
