@@ -1,9 +1,9 @@
 import React from "react"
-import { Card, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Card } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
 import { FaTags, FaShoppingCart } from "react-icons/fa"
 import StarRating from "../common/StarRating"
-import "../../assets/styles/SingleProgramCard.css"
+import s from "../../assets/styles/SingleProgramCard.module.css"
 import { useCartContext } from "../../contexts/ContextCart.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
 
@@ -12,6 +12,7 @@ const SingleProgramCard = ({ program }) =>
     const { showToast } = useNotificationContext()
     const { addItem } = useCartContext()
 
+    const navigate = useNavigate()
 
     const handleAddToCart = async (programId, quantity) =>
     {
@@ -39,25 +40,25 @@ const SingleProgramCard = ({ program }) =>
     }
 
     return (
-        <Card className="h-100 program-card">
+        <Card className={`h-100 ${s.program_card}`}>
             <Card.Img variant="top" src={program.photo_path} />
             <Card.Body className="d-flex flex-column">
-                <Card.Title>{program.name}</Card.Title>
+                <Card.Title className={s.title} >{program.name}</Card.Title>
                 <StarRating programId={program.id} />
                 <Card.Text className="text-muted">
                     {`${program.description.substring(0, 100)}...`}
                 </Card.Text>
-                <Card.Text className="price-text">
+                <Card.Text className={s.price_text}>
                     <FaTags className="me-2" />€ {program.price}
                 </Card.Text>
                 <div className="mt-auto">
-                    <div className="program-card-footer d-flex justify-content-between align-items-center">
-                        <Link to={`/programs/${program.id}`} onClick={scrollToTop}>
-                            <Button variant="outline-primary">Details</Button>
-                        </Link>
-                        <Button variant="primary" onClick={() => { handleAddToCart(program.id, 1) }}>
+                    <div className={`${s.program_card_footer} d-flex justify-content-between align-items-center`}>
+                        <button className={s.details_btn} onClick={() => { navigate(`/programs/${program.id}`); scrollToTop() }}>Details</button>
+
+                        <button className={s.add_to_cart_btn} onClick={() => { handleAddToCart(program.id, 1) }}>
                             <FaShoppingCart className="me-2" /> Add to Cart
-                        </Button>
+                        </button>
+
                     </div>
                 </div>
             </Card.Body>
