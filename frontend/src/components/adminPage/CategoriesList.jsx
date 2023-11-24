@@ -1,9 +1,9 @@
 import { useCategoriesContext } from "../../contexts/ContextCategories.js"
 import categoriesServices from "../../services/categoriesServices.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
-
+import s from "../../assets/styles/AdminPage.module.css"
 import { useState } from "react"
-import { Table, Container, Button, Modal } from "react-bootstrap"
+import { Table, Container, Modal } from "react-bootstrap"
 
 
 const CategoriesList = () =>
@@ -60,7 +60,7 @@ const CategoriesList = () =>
                                 <td>{ele.description}</td>
                                 <td>{ele.urlPath}</td>
                                 <td>{ele.imagePath}</td>
-                                <td><Button variant="danger" onClick={() => { openModal(ele) }}>Delete</Button></td>
+                                <td><button className={s.redDeleteButton} onClick={() => { openModal(ele) }} >Delete</button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -73,8 +73,8 @@ const CategoriesList = () =>
                 </Modal.Header>
                 <Modal.Body>Are you sure want to delete {categoryToDelete?.name}?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeModal}>Cancel</Button>
-                    <Button variant="primary" onClick={() => removeCategory(categoryToDelete?.id)}>Confirm</Button>
+                    <button className={s.secondaryButton} onClick={closeModal}>Cancel</button>
+                    <button className={`${s.blueButton} ${s.small} `} onClick={() => removeCategory(categoryToDelete?.id)}>Confirm</button>
                 </Modal.Footer>
             </Modal>
         </Container>
