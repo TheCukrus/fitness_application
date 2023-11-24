@@ -1,0 +1,122 @@
+.container {
+  padding: 3rem 3rem 3rem 0rem;
+  overflow-x: hidden;
+}
+
+.image {
+  opacity: 0;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: left;
+  opacity: 0;
+  color: var(--text-color);
+}
+
+.paragraph {
+  margin-bottom: 2rem;
+  opacity: 0;
+  color: var(--text-color);
+}
+
+.formName,
+.formEmail,
+.formMessage {
+  opacity: 0;
+}
+
+.buttonPlace {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+}
+
+.button {
+  margin: 1rem;
+  width: var(--button-big-width);
+  height: var(--button-big-height);
+  background: var(--button-primary-bg);
+  border-radius: 5px;
+  color: var(--button-text-color-light);
+  border: 1px solid var(--button-primary-border-color);
+  transition: var(--button-transition);
+}
+
+.thankYouMessage {
+  text-align: center;
+  opacity: 0;
+}
+
+.thankYouMessage h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.thankYouMessage p {
+  color: var(--text-color);
+}
+
+.thankYouAnimation {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.fadeInUp {
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+.headerAnimation {
+  animation: headerAnimation 1.2s ease 0.5s forwards;
+  transform-origin: top left;
+}
+
+.paragraphAnimation {
+  animation: headerAnimation 1.2s ease 1s forwards;
+  transform-origin: top left;
+}
+
+.FormNameAnimation {
+  animation: fadeInUp 1s ease 1.5s forwards;
+  transform-origin: top left;
+}
+
+.FormEmailAnimation {
+  animation: fadeInUp 0.8s ease 1.8s forwards;
+  transform-origin: top left;
+}
+
+.FormMessageAnimation {
+  animation: fadeInUp 0.8s ease 2.1s forwards;
+  transform-origin: top left;
+}
+
+.ButtonAnimation {
+  animation: fadeInUp 0.8s ease 2.4s forwards;
+  transform-origin: top left;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes headerAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
