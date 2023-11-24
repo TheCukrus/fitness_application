@@ -1,58 +1,36 @@
-/* Programs.css */
+h2 {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
 
-/* Container styles */
-.programs-container {
-    margin: 1rem;
-    padding: 2rem;
-    text-align: center;
+/* Program Card Styles */
+.program-card {
+  width: 18rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.card-img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .program-card {
+    width: 100%;
   }
-  
-  .programs-container h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  /* Category styles */
-  .category {
-    margin: 2rem 0;
-  }
-  
-  .category h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .category p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .category img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  /* Program styles */
-  .program {
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .program h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .program p {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .program img {
-    max-width: 100%;
-    border-radius: 5px;
-  }
-  
+}
