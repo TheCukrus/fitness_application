@@ -1,0 +1,63 @@
+:root {
+
+  /* For background, for sections to create a contrast against the primary color scheme.*/
+  --secondary-bg-color: #EFF2F1;
+
+  /* For headings and paragraphs*/
+  --text-color: #36454F;
+
+
+  /* Button Styles */
+
+  /* Primary button color*/
+  --button-primary-bg: linear-gradient(to right, #89f7fe, #66a6ff);
+  --button-primary-hover-bg: linear-gradient(to right, #75e6fd, #559ded);
+  --button-primary-border-color: #73c1fb;
+
+  /* Secondary button color*/
+  --button-secondary-bg: linear-gradient(to right, #c89dd0, #8b9bc7);
+  --button-secondary-hover-bg: linear-gradient(to right, #b78cc1, #7a8bb9);
+  --button-secondary-border-color: #a68fd8;
+
+  /* Green button color*/
+  --button-green-bg: linear-gradient(45deg, #11998e, #38ef7d);
+  --button-green-hover-bg: linear-gradient(45deg, #0f7a71, #2acca7);
+  --button-green-border-color: #11998e;
+
+  /* Red button color*/
+  --button-red-bg: linear-gradient(45deg, #f85032, #e73827);
+  --button-red-hover-bg: linear-gradient(45deg, #e63b25, #d73020);
+  --button-red-border-color: #e73827;
+
+  /* Big buttons */
+  --button-big-height: 3rem;
+  --button-big-width: 10rem;
+
+  --button-transition: all 0.3s ease;
+  --button-text-color-light: white;
+  --button-text-color-dark: black;
+
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+
+/* Just for debugging*/
+
+/* * {
+    border: 1px solid red; 
+  } */
