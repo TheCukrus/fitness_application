@@ -20,6 +20,10 @@
     opacity: 0;
 }
 
+.row {
+    justify-content: center;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -50,4 +54,10 @@
 
 .fadeInAnimate {
     animation: fadeIn 1s ease-out forwards;
+}
+
+@media (max-width: 576px) {
+    .col {
+        opacity: 1;
+    }
 }
