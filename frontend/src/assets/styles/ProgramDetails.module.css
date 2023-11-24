@@ -1,0 +1,219 @@
+.main_content {
+    padding: 2rem;
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.main_content_side {
+    padding: 0.5rem 8rem 0rem 3rem;
+}
+
+.category {
+    margin-top: 1rem;
+}
+
+.h2 {
+    display: flex;
+    letter-spacing: 0.2px;
+    color: var(--text-color);
+}
+
+.price {
+    padding-top: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0.1px;
+    color: var(--text-color);
+}
+
+.description {
+    margin-top: 2rem;
+    letter-spacing: 0.2px;
+    color: var(--text-color);
+}
+
+.action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.add_to_cart {
+    width: var(--big-button-width);
+    height: 2.5rem;
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-primary-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-primary-border-color);
+    transition: var(--button-transition);
+}
+
+.add_to_cart:hover {
+    background: var(--button-primary-hover-bg)
+}
+
+.comment_btn {
+    width: var(--button-big-width);
+    height: 2.5rem;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--button-text-color-dark);
+    border: 2px solid var(--button-secondary-border-color);
+    transition: var(--button-transition);
+
+}
+
+.comment_btn:hover {
+    background: var(--button-secondary-hover-bg);
+    color: white;
+}
+
+
+
+/* Styles for heart button */
+.favorite_button {
+    position: relative;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.heart_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    color: #ff385c;
+    font-size: 24px;
+    background-color: rgba(255, 56, 92, 0);
+}
+
+.favorite_button:hover .heart_icon {
+    transform: scale(1.2);
+    background-color: rgba(255, 56, 92, 0.1);
+}
+
+.favored .heart_icon {
+    color: #ff385c;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.main_content,
+.main_content_side,
+.action {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.star_rating,
+.favorite_button {
+    animation: scaleUp 0.3s ease-out forwards;
+}
+
+
+
+/* Responsive design*/
+@media screen and (max-width: 1400px) {
+    .main_content_side {
+        padding: 0.5rem 4rem 0rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .main_content_side {
+        padding: 0.5rem 2rem 0rem 1.5rem;
+    }
+
+    .price {
+        padding-top: 1.5rem;
+    }
+
+    .description {
+        margin-top: 0;
+        letter-spacing: 0.2px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .main_content_side {
+        padding: 0;
+    }
+
+    .h2 {
+        font-size: x-large;
+    }
+
+    .price {
+        padding-top: 0.5rem;
+    }
+
+    .description {
+        margin-top: 0;
+        letter-spacing: 0.2px;
+    }
+
+    .category {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main_content_side {
+        padding: 1.5rem 0rem;
+    }
+
+    .price {
+        padding-top: 0.5rem;
+    }
+
+    .description {
+        margin-top: 0;
+        letter-spacing: 0.2px;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .action {
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
