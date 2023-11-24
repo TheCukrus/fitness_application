@@ -1,0 +1,88 @@
+.program_card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.title {
+    color: var(--text-color);
+}
+
+.price_text {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.details_btn {
+    width: 5rem;
+    height: 2.5rem;
+    animation: fadeIn 1.2s ease-out forwards;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--button-text-color-dark);
+    border: 2px solid var(--button-secondary-border-color);
+    transition: var(--button-transition);
+}
+
+.details_btn:hover {
+    background: var(--button-secondary-hover-bg);
+    color: white;
+}
+
+.add_to_cart_btn {
+    width: 8rem;
+    height: 2.5rem;
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-primary-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-primary-border-color);
+    transition: var(--button-transition);
+}
+
+.add_to_cart_btn:hover {
+    background: var(--button-primary-hover-bg)
+}
+
+
+
+.row {
+    justify-content: center;
+}
+
+.program-card-col {
+    margin: 0 auto;
+}
+
+.program-card-footer {
+    margin-top: auto;
+}
+
+.item-animation {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .item-animation {
+        animation: none;
+    }
+
+    .program_card .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
