@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Row, Col, Form, FloatingLabel, Button } from "react-bootstrap"
+import { Row, Col, Form, FloatingLabel } from "react-bootstrap"
 import { FaGoogle, FaApple } from "react-icons/fa"
-import "../../assets/styles/Login.css"
+import s from "../../assets/styles/Login.module.css"
 import loginService from "../../services/loginService.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
 import adminService from "../../services/adminService.js"
@@ -44,9 +44,9 @@ const Login = () =>
             // Check if the toast has already been shown
             if (!user)
             {
-                setUser(`Bearer ${login.token}`);
-                homeNav("/");
-                showToast(`Welcome back ${login.username}!`, "success");
+                setUser(`Bearer ${login.token}`)
+                homeNav("/")
+                showToast(`Welcome back ${login.username}!`, "success")
             }
         }
         catch (err)
@@ -56,8 +56,8 @@ const Login = () =>
     }
 
     return (
-        <div className="login-container">
-            <div className="image-login-side">
+        <div className={s.login_container}>
+            <div className={s.image_login_side}>
                 <HeroBanner
                     title={"Log In"}
                     subtitle={"Welcome back, start new challange or continue existing"}
@@ -65,10 +65,10 @@ const Login = () =>
                 />
             </div>
 
-            <div className="input-login-form">
+            <div className={s.input_login_form}>
                 <h2>Login</h2>
 
-                <Form onSubmit={handleOnSubmit} className="login-form">
+                <Form onSubmit={handleOnSubmit} className={s.login_form}>
                     <Form.Group className="mb-3">
                         <FloatingLabel label={`Email/Username`}>
                             <Form.Control type="text" name="login" value={loginForm.username} onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })} required placeholder="Username/Email" />
@@ -86,25 +86,25 @@ const Login = () =>
                             <Form.Check label={"Remember me"} />
                         </Col>
                         <Col md={6} >
-                            <Link className="right-aligned-link" to="/">Forgot password</Link>
+                            <Link className={s.right_aligned_link} to="/">Forgot password</Link>
                         </Col>
                     </Row>
 
-                    <Button as="input" type="submit" className="w-100 mb-3 btn-primary"></Button>
+                    <input type="submit" className={`w-100 mb-3 ${s.login_button}`} />
 
                     <Row className="mb-3">
                         <Col xs={12} sm={6} className="pr-1">
-                            <Button variant="outline-primary" className="w-100 mb-2"><FaGoogle /> Log in with Google</Button>
+                            <button type="button" className={`w-100 mb-2 ${s.login_google}`}><FaGoogle /> Log in with Google</button>
                         </Col>
 
                         <Col xs={12} sm={6} className="pl-1">
-                            <Button variant="outline-primary" className="w-100 mb-2"><FaApple /> Log in with Apple</Button>
+                            <button type="button" className={`w-100 mb-2 ${s.login_apple}`}><FaApple /> Log in with Apple</button>
                         </Col>
                     </Row>
 
-                    <hr className="hr-divider" />
+                    <hr />
 
-                    <div className="account-prompt">
+                    <div className={s.account_prompt}>
                         <p>No account yet? <Link to="/signup">Sign Up</Link></p>
                     </div>
                 </Form>
