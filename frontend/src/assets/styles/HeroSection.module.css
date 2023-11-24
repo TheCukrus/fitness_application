@@ -24,8 +24,8 @@
 
 .primaryAction {
     margin: 1rem;
-    width: 10rem;
-    height: 3rem;
+    width: var(--button-big-width);
+    height: var(--button-big-height);
     animation: fadeIn 1.2s ease-out forwards;
     background: var(--button-primary-bg);
     border-radius: 5px;
