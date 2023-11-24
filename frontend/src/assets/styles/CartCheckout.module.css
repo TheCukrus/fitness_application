@@ -30,6 +30,22 @@
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
+.placeOrder {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-green-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-green-border-color);
+    transition: var(--button-transition);
+}
+
+.placeOrder:hover {
+    background: var(--button-green-hover-bg)
+}
+
+
 @keyframes fadeInUp {
     from {
         transform: translateY(20px);
