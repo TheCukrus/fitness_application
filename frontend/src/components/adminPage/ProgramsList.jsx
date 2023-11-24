@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import programService from "../../services/programService.js"
 import { useNotificationContext } from "../../contexts/ContextNotification.js"
-
-import { Table, Button, Modal, Container } from "react-bootstrap"
+import s from "../../assets/styles/AdminPage.module.css"
+import { Table, Modal, Container } from "react-bootstrap"
 
 const ProgramList = ({ fetchProgramList, programList }) =>
 {
@@ -62,7 +62,7 @@ const ProgramList = ({ fetchProgramList, programList }) =>
                                 <td>{ele.category}</td>
                                 <td>{ele.price}</td>
                                 <td>{ele.photo_path}</td>
-                                <td><Button variant="danger" onClick={() => openModal(ele)}>Delete</Button></td>
+                                <td><button onClick={() => openModal(ele)} className={s.redDeleteButton}>Delete</button></td>
                             </tr>))}
                         </tbody>
                     </Table>
@@ -74,8 +74,8 @@ const ProgramList = ({ fetchProgramList, programList }) =>
                 </Modal.Header>
                 <Modal.Body>Are you sure want to delete {programToDelete?.name}?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeModal}>Cancel</Button>
-                    <Button variant="primary" onClick={() => deleteProgram(programToDelete?.id)}>Confirm</Button>
+                    <button className={s.secondaryButton} onClick={closeModal}>Cancel</button>
+                    <button className={`${s.blueButton} ${s.small} `} onClick={() => deleteProgram(programToDelete?.id)}>Confirm</button>
                 </Modal.Footer>
             </Modal>
         </Container>
