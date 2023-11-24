@@ -1,0 +1,115 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    min-height: 100%;
+}
+
+
+.image_signup_side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625em;
+    flex: 1 0 0;
+    align-self: stretch;
+    background-color: var(--secondary-bg-color);
+}
+
+.input_form {
+    display: flex;
+    padding: 5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+    flex: 1 0 0;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.5s ease-out forwards, fadeformIn 0.5s ease-out forwards;
+}
+
+.input_form h2 {
+    color: var(--text-color)
+}
+
+/* Buttons */
+.signUpButton {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: var(--button-primary-bg);
+    border-radius: 5px;
+    color: var(--button-text-color-light);
+    border: 1px solid var(--button-primary-border-color);
+    transition: var(--button-transition);
+}
+
+.signUpButton:hover {
+    background: var(--button-primary-hover-bg);
+}
+
+.signUp_google,
+.signUp_apple {
+    width: var(--button-big-width);
+    height: var(--button-big-height);
+    animation: fadeIn 1.2s ease-out forwards;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--button-text-color-dark);
+    border: 2px solid var(--button-secondary-border-color);
+    transition: var(--button-transition);
+}
+
+.signUp_google:hover,
+.signUp_apple:hover {
+    background: var(--button-secondary-hover-bg);
+    color: white;
+}
+
+.account_prompt {
+    color: var(--text-color);
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeformIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments for tablets */
+@media (max-width: 991.98px) {
+    .container {
+        flex-direction: column;
+        /* Stack the image and form on top of each other */
+    }
+
+    .image_signup_side {
+        width: 100%;
+        /* Full width */
+        min-height: 300px;
+        /* Minimum height for the image container */
+        order: -1;
+        /* Move image to the top */
+    }
+
+    .input_form {
+        width: 100%;
+        /* Full width */
+        padding: 2rem;
+        /* Reduce padding on smaller screens */
+        max-width: none;
+        /* Remove max-width */
+        display: flex;
+        align-items: center;
+    }
+}
