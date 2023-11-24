@@ -1,0 +1,120 @@
+.featuresContainer {
+  padding: 4rem 1rem;
+  background-color: var(--secondary-bg-color);
+  text-align: center;
+}
+
+.featuresHeading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.featuresIntro {
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+
+.feature {
+  margin-bottom: 3rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.featureIcon {
+  margin-bottom: 1rem;
+  color: #000;
+  animation: fadeInUp 2.5s ease-out forwards;
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.featureDescription {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.primaryAction {
+  margin:1rem;
+  width: var(--button-big-width);
+  height: var(--button-big-height);
+  border-radius: 5px;
+  background: var(--button-primary-bg);
+  color: var(--button-text-color-light);
+  border: 1px solid var(--button-primary-border-color);
+  transition: var(--button-transition);
+}
+
+.primaryAction:hover {
+  background: var(--button-primary-hover-bg);
+}
+
+.animate {
+  opacity: 0;
+  transform: translateY(0);
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(55px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.animate:nth-child(3) {
+  animation-delay: 1s;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+
+  .featuresContainer {
+    padding: 2rem 1rem;
+  }
+
+  .featuresHeading {
+    font-size: 2rem;
+  }
+
+  .feature {
+    margin-bottom: 2rem;
+  }
+
+  .featureIcon {
+    font-size: 2em;
+  }
+
+  .featureTitle {
+    font-size: 1.2rem;
+  }
+
+  .featureDescription {
+    font-size: 0.9rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .featuresHeading {
+    font-size: 2rem;
+  }
+
+  .feature {
+    margin-bottom: 2rem;
+  }
+}
