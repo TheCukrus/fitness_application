@@ -19,3 +19,6 @@ npm run install
 after dependencies installed
 in backend run: npm run start
 in frontend run: npm run start
+
+or you can wisit my website at : https://fitness-application-faws.onrender.com/
+It can took a bit to launch
