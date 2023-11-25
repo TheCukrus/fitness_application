@@ -1,6 +1,15 @@
 import axios from "axios"
 
-const baseUrl = "http://127.0.0.1:80/api/v1/cart"
+let baseUrl
+
+if (process.env.NODE_ENV === "development")
+{
+    baseUrl = "http://127.0.0.1:80/api/v1/cart"
+}
+else
+{
+    baseUrl = "https://fitness-application-faws.onrender.com/api/v1/cart"
+}
 
 //Extracting token from localStorage
 const getToken = () =>
